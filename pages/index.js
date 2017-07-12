@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {TodoForm} from '../src/components/todos/TodoForm';
 
 class App extends Component {
   constructor() {
@@ -10,7 +11,7 @@ class App extends Component {
         {id: 3, name: 'Ship It!', isComplete: false}
       ],
       currentTodo: ''
-    }
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -29,9 +30,9 @@ class App extends Component {
           <h2>React Todos</h2>
         </div>
         <div className="Todo-App">
-          <form>
-            <input type="text" onChange={this.handleInputChange} value={this.state.currentTodo}/>
-          </form>
+          <TodoForm handleInputChange={this.handleInputChange}
+            currentTodo={this.state.currentTodo}
+          />
           <div className="Todo-List">
             <ul>
               {this.state.todos.map(todo =>
