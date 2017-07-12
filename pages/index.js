@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import {TodoForm, TodoList} from '../src/components/todos';
-import {addTodo, generateId, findById, toggleTodo, updateTodo} from '../src/lib/todoHelpers';
+import {
+  addTodo,
+  generateId,
+  findById,
+  toggleTodo,
+  updateTodo,
+  removeTodo
+} from '../src/lib/todoHelpers';
 import {pipe, partial} from '../src/lib/utils';
 
 class App extends Component {
@@ -11,6 +18,12 @@ class App extends Component {
       {id: 3, name: 'Ship It!', isComplete: false}
     ],
     currentTodo: ''
+  };
+
+  handleRemove = (id, evt) => {
+    evt.preventDefault();
+    const updatedTodos = removeTodo(this.state.todos, id);
+    this.setState({todos: updatedTodos});
   };
 
   handleToggle = id => {
@@ -64,6 +77,7 @@ class App extends Component {
           <TodoList
             handleToggle={this.handleToggle}
             todos={this.state.todos}
+            handleRemove={this.handleRemove}
           />
 
         </div>
@@ -72,18 +86,6 @@ class App extends Component {
             padding-top: 20px;
             display: inline-block;
             text-align: left
-          }
-
-          input {
-            font-size: 20px
-          }
-
-          ul {
-            padding: 0px;
-          }
-
-          li {
-            list-style-type: none;
           }
 
           .error {
