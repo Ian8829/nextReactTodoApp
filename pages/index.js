@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TodoForm, TodoList} from '../src/components/todos';
+import {TodoForm, TodoList, Footer} from '../src/components/todos';
 import {
   addTodo,
   generateId,
@@ -79,7 +79,7 @@ class App extends Component {
             todos={this.state.todos}
             handleRemove={this.handleRemove}
           />
-
+          <Footer/>
         </div>
         <style jsx>{`
           .Todo-App {
